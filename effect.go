@@ -32,3 +32,13 @@ func (im *Image) Convolve(order int, kernel []float64) (*Image, error) {
 	data.kernel = (*C.double)(unsafe.Pointer(&kernel[0]))
 	return im.applyDataFunc("convolving", C.ImageDataFunc(C.convolveImage), &data)
 }
+
+func (im *Image) UnsharpMask(radius float64, sigma float64, amount float64, threshold float64) (*Image, error) {
+	var data C.UnsharpMaskData
+	data.radius = C.double(radius)
+	data.sigma = C.double(sigma)
+	data.amount = C.double(amount)
+	data.threshold = C.double(threshold)
+
+	return im.applyDataFunc("unsharp_mask", C.ImageDataFunc(C.unsharpMaskImage), &data)
+}
