@@ -8,6 +8,6 @@ convolveImage(Image *image, void *data, ExceptionInfo *ex) {
 
 Image *
 unsharpMaskImage(Image *image, void *data, ExceptionInfo *ex) {
-	UnsharpMaskData *d = data;
-	return UnsharpMaskImage(image, d->radius, d->sigma, d->amount, d->threshold ,ex);
+    UnsharpMaskData *d = data;
+    return UnsharpMaskImage(image, d->radius, d->sigma, d->amount, d->threshold ,ex);
 }
