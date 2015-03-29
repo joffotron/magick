@@ -33,6 +33,10 @@ func (im *Image) Convolve(order int, kernel []float64) (*Image, error) {
 	return im.applyDataFunc("convolving", C.ImageDataFunc(C.convolveImage), &data)
 }
 
+// UnsharpMask sharpens one or more image channels. We convolve the image
+// with a Gaussian operator of the given radius and standard deviation (sigma).
+// For reasonable results, radius should be larger than sigma. Use a radius of 0 and
+// UnsharpMaskImage selects a suitable radius for you.
 func (im *Image) UnsharpMask(radius float64, sigma float64, amount float64, threshold float64) (*Image, error) {
 	var data C.UnsharpMaskData
 	data.radius = C.double(radius)
